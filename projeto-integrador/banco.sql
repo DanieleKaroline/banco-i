@@ -1,5 +1,10 @@
+CREATE DATABASE 2111100020; 
+
+--coloquei minha matricula ao invés do nome do banco da aplicação 
+
+
 /*populada*/
-create table membro(
+CREATE TABLE membro(
 	matricula bigint,
 	nome varchar(150) not null,
 	cpf bigint not null unique,
@@ -12,16 +17,16 @@ create table membro(
 	primary key (matricula)
 );
 /*populada*/
-create table telefone(
+CREATE TABLE telefone(
 	membro_matricula bigint,
 	telefone bigint unique,
 	foreign key(membro_matricula) references membro(matricula)
 );
 
-alter table membro add constraint telefone foreign key (telefone) references telefone(telefone);
+ALTER TABLE membro ADD CONSTRAINT telefone FOREIGN KEY (telefone) references telefone(telefone);
 
 /*populada*/
-create table administrador(
+CREATE TABLE administrador(
 	id int,
 	nome varchar not null,
 	funcao varchar not null,
@@ -31,7 +36,7 @@ create table administrador(
 );
 
 /*populada*/
-create table produto(
+CREATE TABLE produto(
 	id int,
 	nome varchar not null,
 	descricao varchar not null,
@@ -43,7 +48,7 @@ create table produto(
 );
 
 /*populada*/
-create table estoque(
+CREATE TABLE estoque(
 	id int,
 	id_prod int,
 	qtde int not null,
@@ -52,7 +57,7 @@ create table estoque(
 	foreign key(id_prod) references produto(id)
 );
 /*populada*/
-create table membro_produto(
+CREATE TABLE membro_produto(
 	id int,
 	id_prod int not null,
 	membro_matricula int not null,
@@ -66,7 +71,7 @@ create table membro_produto(
 	foreign key(membro_matricula) references membro(matricula)
 );
 /*populada*/
-create table contato(
+CREATE TABLE contato(
 	id int,
 	nome varchar not null,
 	email varchar not null,
@@ -78,7 +83,7 @@ create table contato(
 );
 
 /*populada*/
-create table evento(
+CREATE TABLE evento(
 	id int,
 	nome varchar not null,
 	descricao varchar not null,
@@ -92,7 +97,7 @@ create table evento(
 );
 
 /*populada*/
-create table membro_evento(
+CREATE TABLE membro_evento(
 	id_evento int not null,
 	membro_matricula int not null,
 	foreign key(id_evento) references evento(id),
@@ -100,7 +105,7 @@ create table membro_evento(
 );
 
 /*populada*/
-create table carteirinha(
+CREATE TABLE carteirinha(
 	id int,
 	membro_matricula int not null,
 	validade date not null,
@@ -109,7 +114,7 @@ create table carteirinha(
 );
 
 /*Populada*/
-create table blog(
+CREATE TABLE blog(
 	id int,
 	titulo varchar not null,
 	subtitulo varchar not null,
@@ -121,7 +126,7 @@ create table blog(
 );
 
 /*populada*/
-create table publicacao(
+CREATE TABLE publicacao(
 	id_blog int not null,
 	id_adm int not null,
 	foreign key(id_adm) references administrador(id),
